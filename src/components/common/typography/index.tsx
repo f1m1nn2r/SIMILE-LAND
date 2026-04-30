@@ -1,3 +1,5 @@
+import type { ComponentPropsWithoutRef, ElementType } from "react";
+
 const weightMap = {
   normal: "font-normal",
   medium: "font-medium",
@@ -16,13 +18,13 @@ const sizeMap = {
 type Weight = keyof typeof weightMap;
 type Size = keyof typeof sizeMap;
 
-type TypographyProps<T extends React.ElementType> = {
+type TypographyProps<T extends ElementType> = {
   as?: T;
   weight?: Weight;
   size?: Size;
-} & Omit<React.ComponentPropsWithoutRef<T>, "weight" | "size">;
+} & Omit<ComponentPropsWithoutRef<T>, "weight" | "size">;
 
-export const Typography = <T extends React.ElementType = "p">({
+export const Typography = <T extends ElementType = "p">({
   as,
   weight,
   size,

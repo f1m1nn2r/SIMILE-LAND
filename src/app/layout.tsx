@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.scss";
-import { Typography } from "../components/common/typography";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +29,6 @@ export default function RootLayout({
     >
       <body className="layout min-h-full flex flex-col bg-[var(--color-gray-lighter)]">
         {children}
-        <Typography weight="bold" size="heading-1">
-          왜 안 될까
-        </Typography>
       </body>
     </html>
   );
