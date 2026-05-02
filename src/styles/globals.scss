@@ -17,23 +17,13 @@
 }
 
 // ---------- 타이포그래피 ---------- //
-// mobile first
 @theme {
-  --font-size-heading-1: 1.75rem;
-  --font-size-heading-2: 1.375rem;
-  --font-size-heading-3: 1.125rem;
-  --font-size-body: 1rem;
-  --font-size-caption: 0.75rem;
-}
-
-@media (min-width: 1024px) {
-  :root {
-    --font-size-heading-1: 180px;
-    --font-size-heading-2: 2rem;
-    --font-size-heading-3: 1.5rem;
-    --font-size-body: 1rem;
-    --font-size-caption: 0.875rem;
-  }
+  --text-heading-1: 1.75rem;
+  --text-heading-2: 1.375rem;
+  --text-heading-3: 60px;
+  --text-subtitle: 24px;
+  --text-body: 18px;
+  --text-caption: 0.75rem;
 }
 
 // ---------- 전역 레이아웃 ---------- //
@@ -44,4 +34,155 @@
   padding-right: 100px;
   padding-bottom: 250px;
   min-height: 100vh;
+}
+
+.site {
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    position: sticky;
+    top: 0;
+
+    &__logo {
+      position: relative;
+      width: 180px;
+      height: 120px;
+    }
+
+    &__menu {
+      display: flex;
+      gap: 10px;
+    }
+
+    &__nav {
+      position: relative;
+    }
+
+    &__visualizer {
+      margin-left: 6px;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+  &-footer {
+    background-color: var(--color-ink);
+    padding: 100px;
+
+    &__title {
+      margin-bottom: 100px;
+    }
+  }
+}
+
+// ---------- 네비게이션 메뉴 ---------- //
+.nav-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 270px;
+  perspective: 1000px;
+
+  &__list {
+    background-color: var(--color-gray-lighter);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid var(--color-ink);
+    list-style: none;
+  }
+
+  &__item {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: var(--color-ink);
+    position: relative;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      width: 256px;
+      height: 100%;
+      background-color: var(--color-yellow);
+      border-radius: 30px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scale(0.8);
+      top: 0;
+      z-index: -1;
+      padding-left: 30px;
+      padding-right: 30px;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 1;
+        visibility: visible;
+        transition:
+          opacity 0.2s ease,
+          visibility 0.2s ease,
+          scale 0.2s ease;
+        transform: translateX(-50%) scale(1);
+      }
+    }
+
+    &.active {
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #4caf50;
+    flex-shrink: 0;
+  }
+
+  &__instagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--color-yellow);
+    border-radius: 20px;
+    border: 1px solid var(--color-ink);
+    padding: 40px;
+    text-decoration: none;
+    color: var(--color-ink);
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+  }
 }
