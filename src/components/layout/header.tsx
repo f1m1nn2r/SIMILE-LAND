@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../common/button";
 import { useAudio } from "../providers/audio-provider";
 import { NavMenu } from "./nav-menu";
+import { useRouter } from "next/navigation";
 
 const W = 40;
 const H = 12;
@@ -23,6 +23,8 @@ export const Header = () => {
   const isPlayingRef = useRef(false);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     isPlayingRef.current = isPlaying;
@@ -123,17 +125,16 @@ export const Header = () => {
           </li>
 
           <li className="site-header__menu-item">
-            <Link href="/mypage">
-              <Button
-                className="site-header__button site-header__button--mypage"
-                variant="emoji"
-                bgColor="yellow"
-                textWeight="semibold"
-                textSize="body"
-              >
-                My Page
-              </Button>
-            </Link>
+            <Button
+              className="site-header__button site-header__button--mypage"
+              variant="emoji"
+              bgColor="yellow"
+              textWeight="semibold"
+              textSize="body"
+              onClick={() => router.push("/mypage")}
+            >
+              My Page
+            </Button>
           </li>
 
           <li className="site-header__menu-item">

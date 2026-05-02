@@ -39,6 +39,7 @@ export const Button = ({
   if (variant === "emoji") {
     return (
       <button
+        type="button"
         onClick={onClick}
         className={`group flex items-center gap-0 overflow-hidden rounded-full px-10 py-4 transition-all duration-300 cursor-pointer ${colorClass[bgColor]} ${className ?? ""}`}
       >
@@ -54,6 +55,7 @@ export const Button = ({
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`rounded-xl p-5 cursor-pointer ${colorClass[bgColor]} ${className ?? ""}`}
     >

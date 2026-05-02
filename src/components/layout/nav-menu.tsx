@@ -24,10 +24,17 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement | null>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const panel = panelRef.current;
     if (!panel) return;
+
+    if (isFirstRender.current) {
+      gsap.set(panel, { autoAlpha: 0 });
+      isFirstRender.current = false;
+      return;
+    }
 
     tlRef.current?.kill();
 
@@ -98,7 +105,7 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
   }, [isOpen]);
 
   return (
-    <div ref={panelRef} className="nav-menu">
+    <div ref={panelRef} className="nav-menu" style={{ visibility: "hidden" }}>
       <ul className="nav-menu__list">
         {NAV_ITEMS.map(({ label, href }) => (
           <li key={href} className="nav-menu__item">
