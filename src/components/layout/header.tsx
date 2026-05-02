@@ -6,6 +6,7 @@ import { Button } from "../common/button";
 import { useAudio } from "../providers/audio-provider";
 import { NavMenu } from "./nav-menu";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const W = 40;
 const H = 12;
@@ -31,6 +32,12 @@ export const Header = () => {
   }, [isPlaying]);
 
   useEffect(() => {
+    if (!isPlaying) {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+      return;
+    }
+
     const drawWave = () => {
       const analyser = analyserRef.current;
       const dataArray = dataArrayRef.current;
@@ -65,9 +72,10 @@ export const Header = () => {
 
     rafRef.current = requestAnimationFrame(drawWave);
     return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
     };
-  }, [analyserRef, dataArrayRef]);
+  }, [isPlaying, analyserRef, dataArrayRef]);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -84,9 +92,9 @@ export const Header = () => {
 
   return (
     <header className="site-header">
-      <h1 className="site-header__logo">
-        <Image src="/assets/logo.svg" alt="Logo" fill priority />
-      </h1>
+      <Link href="/" className="site-header__logo">
+        <Image src="/assets/logo.svg" alt="SIMILE LAND" fill priority />
+      </Link>
 
       <nav ref={navRef} className="site-header__nav">
         <ul className="site-header__menu">
@@ -144,6 +152,8 @@ export const Header = () => {
               bgColor="teal"
               textWeight="semibold"
               textSize="body"
+              aria-expanded={isMenuOpen}
+              aria-controls="site-nav-menu"
               onClick={() => setIsMenuOpen((prev) => !prev)}
             >
               Menu
@@ -151,7 +161,9 @@ export const Header = () => {
           </li>
         </ul>
 
-        <NavMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+        <div id="site-nav-menu">
+          <NavMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+        </div>
       </nav>
     </header>
   );
