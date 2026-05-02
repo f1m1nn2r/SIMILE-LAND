@@ -27,37 +27,41 @@ export const AudioProvider = ({ children }: { children: React.ReactNode }) => {
   const isPlayingRef = useRef(false);
 
   const musicToggle = async () => {
-    audioRef.current = new Audio("/audio/quit-smoking.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.2;
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/audio/quit-smoking.mp3");
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.2;
 
-    const AudioContextClass =
-      window.AudioContext ||
-      (window as Window & { webkitAudioContext?: typeof AudioContext })
-        .webkitAudioContext;
-    audioCtxRef.current = new AudioContextClass();
-    analyserRef.current = audioCtxRef.current.createAnalyser();
-    analyserRef.current.fftSize = 256;
+      const AudioContextClass =
+        window.AudioContext ||
+        (window as Window & { webkitAudioContext?: typeof AudioContext })
+          .webkitAudioContext;
+      audioCtxRef.current = new AudioContextClass();
+      analyserRef.current = audioCtxRef.current.createAnalyser();
+      analyserRef.current.fftSize = 256;
 
-    const source = audioCtxRef.current.createMediaElementSource(
-      audioRef.current,
-    );
-    source.connect(analyserRef.current);
-    analyserRef.current.connect(audioCtxRef.current.destination);
+      const source = audioCtxRef.current.createMediaElementSource(
+        audioRef.current,
+      );
+      source.connect(analyserRef.current);
+      analyserRef.current.connect(audioCtxRef.current.destination);
 
-    dataArrayRef.current = new Uint8Array(
-      analyserRef.current.frequencyBinCount,
-    );
+      dataArrayRef.current = new Uint8Array(
+        analyserRef.current.frequencyBinCount,
+      );
+    }
 
     if (isPlayingRef.current) {
-      audioRef.current?.pause();
+      audioRef.current.pause();
       isPlayingRef.current = false;
       setIsPlaying(false);
     } else {
-      if (audioCtxRef.current.state === "suspended") {
+      if (audioCtxRef.current?.state === "suspended") {
         await audioCtxRef.current.resume();
       }
-      audioRef.current?.play();
+      audioRef.current
+        .play()
+        .catch((error) => console.error("재생 실패:", error));
       isPlayingRef.current = true;
       setIsPlaying(true);
     }
