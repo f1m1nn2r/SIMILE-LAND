@@ -11,12 +11,13 @@ const sizeMap = {
   "heading-1": "text-heading-1",
   "heading-2": "text-heading-2",
   "heading-3": "text-heading-3",
+  subtitle: "text-subtitle",
   body: "text-body",
   caption: "text-caption",
 } as const;
 
-type Weight = keyof typeof weightMap;
-type Size = keyof typeof sizeMap;
+export type Weight = keyof typeof weightMap;
+export type Size = keyof typeof sizeMap;
 
 type TypographyProps<T extends ElementType> = {
   as?: T;
