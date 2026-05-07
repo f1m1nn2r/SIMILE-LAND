@@ -7,7 +7,6 @@ import { Typography } from "@/src/components/common/typography";
 import { Button } from "@/src/components/common/button";
 import { SectionTitle } from "@/src/components/common/section-title";
 import { merchData } from "../constants";
-import { useRouter } from "next/navigation";
 
 type CardProps = (typeof merchData)[number];
 

@@ -3,7 +3,7 @@
 import gsap from "gsap";
 import Image from "next/image";
 import style from "./discography.module.scss";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Typography } from "@/src/components/common/typography";
 import { Button } from "@/src/components/common/button";
 import { extractEdgeColors } from "@/src/features/discography/utils/extractColor";
@@ -16,6 +16,13 @@ const DiscographyCard = ({ image, title, date, description }: CardProps) => {
   const [gradient, setGradient] = useState<string | null>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const TILT_MAX = 12;
+
+  useEffect(() => {
+    const el = imageRef.current;
+    return () => {
+      gsap.killTweensOf(el);
+    };
+  }, []);
 
   const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     try {
