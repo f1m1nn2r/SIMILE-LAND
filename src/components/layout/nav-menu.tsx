@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import gsap from "gsap";
+import style from "./layout.module.scss";
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import gsap from "gsap";
 import { Typography } from "../common/typography";
-import Image from "next/image";
 
 const NAV_ITEMS = [
   { label: "HOME", href: "/" },
@@ -15,6 +16,8 @@ const NAV_ITEMS = [
   { label: "MERCH", href: "/product" },
 ];
 
+const ICON_SIZE = "clamp(22px, 1.1458vw, 44px)";
+
 type NavMenuProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -23,6 +26,9 @@ type NavMenuProps = {
 export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLUListElement | null>(null);
+  const itemsRef = useRef<HTMLLIElement[]>([]);
+  const instagramRef = useRef<HTMLAnchorElement | null>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const isFirstRender = useRef(true);
 
@@ -38,6 +44,10 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
 
     tlRef.current?.kill();
 
+    const list = listRef.current;
+    const items = itemsRef.current;
+    const instagram = instagramRef.current;
+
     if (isOpen) {
       tlRef.current = gsap
         .timeline()
@@ -47,13 +57,13 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
           { autoAlpha: 1, duration: 0.5, ease: "power3.out" },
         )
         .fromTo(
-          panel.querySelector(".nav-menu__list"),
+          list,
           { autoAlpha: 0, rotateY: 30, transformPerspective: 600 },
           { autoAlpha: 1, rotateY: 0, duration: 0.6, ease: "back.out(1.7)" },
           "-=0.3",
         )
         .fromTo(
-          panel.querySelectorAll(".nav-menu__item"),
+          items,
           { autoAlpha: 0, x: -12 },
           {
             autoAlpha: 1,
@@ -65,7 +75,7 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
           "-=0.45",
         )
         .fromTo(
-          panel.querySelector(".nav-menu__instagram"),
+          instagram,
           { autoAlpha: 0, rotateY: -30, transformPerspective: 600 },
           { autoAlpha: 1, rotateY: 0, duration: 0.6, ease: "back.out(1.7)" },
           "<",
@@ -73,14 +83,14 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
     } else {
       tlRef.current = gsap
         .timeline()
-        .to(panel.querySelector(".nav-menu__list"), {
+        .to(list, {
           rotateY: 30,
           transformPerspective: 600,
           duration: 0.5,
           ease: "power3.inOut",
         })
         .to(
-          panel.querySelectorAll(".nav-menu__item"),
+          items,
           {
             autoAlpha: 0,
             x: -12,
@@ -91,7 +101,7 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
           "-=0.45",
         )
         .to(
-          panel.querySelector(".nav-menu__instagram"),
+          instagram,
           {
             rotateY: -30,
             transformPerspective: 600,
@@ -105,36 +115,51 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
   }, [isOpen]);
 
   return (
-    <div ref={panelRef} className="nav-menu" style={{ visibility: "hidden" }}>
-      <ul className="nav-menu__list">
-        {NAV_ITEMS.map(({ label, href }) => (
-          <li key={href} className="nav-menu__item">
+    <div
+      ref={panelRef}
+      className={style["nav-menu"]}
+      style={{ visibility: "hidden" }}
+    >
+      <ul ref={listRef} className={style["nav-menu__list"]}>
+        {NAV_ITEMS.map(({ label, href }, i) => (
+          <li
+            key={href}
+            ref={(el) => {
+              if (el) itemsRef.current[i] = el;
+            }}
+            className={style["nav-menu__item"]}
+          >
             <Link
               href={href}
               onClick={onClose}
-              className={`nav-menu__link ${pathname === href ? "active" : ""}`}
+              className={`${style["nav-menu__link"]} ${pathname === href ? style["nav-menu__link--active"] : ""}`}
             >
               <Typography weight="bold" size="subtitle">
                 {label}
               </Typography>
-              {pathname === href && <span className="nav-menu__dot" />}
+              {pathname === href && <span className={style["nav-menu__dot"]} />}
             </Link>
           </li>
         ))}
       </ul>
 
       <Link
+        ref={instagramRef}
         href="https://www.instagram.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="nav-menu__instagram"
+        className={style["nav-menu__instagram"]}
       >
-        <span className="nav-menu__instagram-icon">
+        <span
+          className={style["nav-menu__instagram-icon"]}
+          style={{ width: ICON_SIZE }}
+        >
           <Image
-            src="/assets/happy.svg"
+            src="/assets/icons/happy.svg"
             alt="Instagram"
             width={22}
             height={22}
+            style={{ width: "100%", height: "auto" }}
           />
         </span>
         <Typography weight="bold" size="subtitle">
