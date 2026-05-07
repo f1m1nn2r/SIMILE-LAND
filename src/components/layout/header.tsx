@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import style from "./layout.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../common/button";
 import { useAudio } from "../providers/audio-provider";
 import { NavMenu } from "./nav-menu";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const W = 40;
 const H = 12;
@@ -91,16 +92,20 @@ export const Header = () => {
   }, [isMenuOpen]);
 
   return (
-    <header className="site-header">
-      <Link href="/" className="site-header__logo">
-        <Image src="/assets/logo.svg" alt="SIMILE LAND" fill priority />
+    <header className={style["site-header"]}>
+      <Link href="/" className={style["site-header__logo"]}>
+        <Image src="/assets/icons/logo.svg" alt="SIMILE LAND" fill priority />
       </Link>
 
-      <nav ref={navRef} className="site-header__nav">
-        <ul className="site-header__menu">
-          <li className="site-header__menu-item">
+      <nav ref={navRef} className={style["site-header__nav"]}>
+        <ul className={style["site-header__menu"]}>
+          <li className={style["site-header__menu-item"]}>
             <Button
-              className="site-header__button site-header__button--music"
+              className={
+                style["site-header__button"] +
+                " " +
+                style["site-header__button--music"]
+              }
               variant="emoji"
               bgColor="lavender"
               onClick={musicToggle}
@@ -110,9 +115,9 @@ export const Header = () => {
               {isPlaying ? "Pause" : "Play"}
 
               {isPlaying && (
-                <span className="site-header__visualizer">
+                <span className={style["site-header__visualizer"]}>
                   <svg
-                    className="site-header__visualizer-svg"
+                    className={style["site-header__visualizer-svg"]}
                     width={W}
                     height={H}
                     viewBox={`0 0 ${W} ${H}`}
@@ -120,7 +125,7 @@ export const Header = () => {
                   >
                     <path
                       ref={pathRef}
-                      className="site-header__visualizer-path"
+                      className={style["site-header__visualizer-path"]}
                       stroke="currentColor"
                       strokeWidth="1.5"
                       strokeLinecap="round"
@@ -132,9 +137,13 @@ export const Header = () => {
             </Button>
           </li>
 
-          <li className="site-header__menu-item">
+          <li className={style["site-header__menu-item"]}>
             <Button
-              className="site-header__button site-header__button--mypage"
+              className={
+                style["site-header__button"] +
+                " " +
+                style["site-header__button--mypage"]
+              }
               variant="emoji"
               bgColor="yellow"
               textWeight="semibold"
@@ -145,9 +154,13 @@ export const Header = () => {
             </Button>
           </li>
 
-          <li className="site-header__menu-item">
+          <li className={style["site-header__menu-item"]}>
             <Button
-              className="site-header__button site-header__button--menu"
+              className={
+                style["site-header__button"] +
+                " " +
+                style["site-header__button--menu"]
+              }
               variant="emoji"
               bgColor="teal"
               textWeight="semibold"
