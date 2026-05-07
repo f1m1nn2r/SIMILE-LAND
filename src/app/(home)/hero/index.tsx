@@ -18,13 +18,18 @@ export const HeroSection = () => {
       titleRef.current.querySelectorAll<HTMLElement>("[data-hero-title]");
     const split = new SplitType(Array.from(lines), { types: "chars" });
 
-    gsap.from(split.chars, {
+    const tween = gsap.from(split.chars, {
       y: 100,
       opacity: 0,
       duration: 0.8,
       stagger: 0.06,
       ease: "power2.out",
     });
+
+    return () => {
+      tween.kill();
+      split.revert();
+    };
   }, []);
 
   return (

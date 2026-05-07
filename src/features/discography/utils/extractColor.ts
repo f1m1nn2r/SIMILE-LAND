@@ -25,7 +25,13 @@ export const extractEdgeColors = (img: HTMLImageElement): [string, string] => {
     return `rgb(${Math.round(r / pixelCount)},${Math.round(g / pixelCount)},${Math.round(b / pixelCount)})`;
   };
 
-  const leftColor = avgRgb(ctx.getImageData(0, 0, sampleW, h).data);
-  const rightColor = avgRgb(ctx.getImageData(w - sampleW, 0, sampleW, h).data);
-  return [leftColor, rightColor];
+  try {
+    const leftColor = avgRgb(ctx.getImageData(0, 0, sampleW, h).data);
+    const rightColor = avgRgb(
+      ctx.getImageData(w - sampleW, 0, sampleW, h).data,
+    );
+    return [leftColor, rightColor];
+  } catch {
+    return ["transparent", "transparent"];
+  }
 };

@@ -77,7 +77,7 @@ export const Profile = () => {
                 src={member.image}
                 alt={`${member.name} 프로필 이미지`}
                 fill
-                priority
+                preload={index === 0}
                 sizes="52vw"
               />
             </div>

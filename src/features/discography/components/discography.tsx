@@ -110,6 +110,7 @@ export const Discography = () => {
           className={style["discography__cta-btn"]}
           textSize="body"
           textWeight="semibold"
+          href="/discography"
         >
           SEE ALL DISCOGRAPHY
         </Button>

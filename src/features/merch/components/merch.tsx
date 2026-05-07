@@ -7,6 +7,7 @@ import { Typography } from "@/src/components/common/typography";
 import { Button } from "@/src/components/common/button";
 import { SectionTitle } from "@/src/components/common/section-title";
 import { merchData } from "../constants";
+import { useRouter } from "next/navigation";
 
 type CardProps = (typeof merchData)[number];
 
@@ -86,6 +87,7 @@ export const Merch = () => {
           bgColor="teal"
           textSize="body"
           textWeight="semibold"
+          href="/product"
         >
           SEE ALL MERCH
         </Button>
