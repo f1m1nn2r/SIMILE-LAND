@@ -1,0 +1,24 @@
+.hero {
+  &-section {
+    &__inner {
+      display: flex;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      gap: 40px;
+    }
+    &__image {
+      width: clamp(300px, 39.0625vw, 1500px);
+      aspect-ratio: 750 / 937;
+      position: relative;
+    }
+    &__title {
+      line-height: 1.2;
+      cursor: default;
+
+      &-line {
+        display: block;
+        overflow: hidden;
+      }
+    }
+  }
+}
