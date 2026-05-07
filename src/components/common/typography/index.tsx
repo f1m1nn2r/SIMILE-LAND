@@ -11,6 +11,8 @@ const sizeMap = {
   "heading-1": "text-heading-1",
   "heading-2": "text-heading-2",
   "heading-3": "text-heading-3",
+  "heading-4": "text-heading-4",
+  "heading-5": "text-heading-5",
   subtitle: "text-subtitle",
   body: "text-body",
   caption: "text-caption",
