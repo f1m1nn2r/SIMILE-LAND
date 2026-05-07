@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* ---------- 컬러 색상 ---------- */
+@theme {
+  --color-lavender: #e1d3e2;
+  --color-yellow: #f7cc65;
+  --color-teal: #57a48d;
+  --color-blue: #345fa2;
+  --color-orange: #f27554;
+  --color-pink: #dd648d;
+
+  --color-ink: #0a0e14;
+  --color-gray-dark: #333333;
+  --color-gray: #666666;
+  --color-gray-light: #dddddd;
+  --color-gray-lighter: #f5f5f5;
+  --color-white: #ffffff;
+}
+
+/* ---------- 타이포그래피 ---------- */
+@theme {
+  --text-heading-1: clamp(64px, 10vw, 180px);
+  --text-heading-2: clamp(36px, 6vw, 80px);
+  --text-heading-3: clamp(28px, 4vw, 60px);
+  --text-heading-4: clamp(24px, 3vw, 42px);
+  --text-heading-5: clamp(20px, 2.5vw, 36px);
+
+  --text-subtitle: clamp(18px, 2vw, 24px);
+  --text-body: clamp(16px, 1.2vw, 18px);
+  --text-caption: clamp(12px, 0.8vw, 14px);
+}
+
+/* IDE CSS 변수 자동완성용 - @theme과 동일한 값 */
+:root {
+  --color-lavender: #e1d3e2;
+  --color-yellow: #f7cc65;
+  --color-teal: #57a48d;
+  --color-blue: #345fa2;
+  --color-orange: #f27554;
+  --color-pink: #dd648d;
+
+  --color-ink: #0a0e14;
+  --color-gray-dark: #333333;
+  --color-gray: #666666;
+  --color-gray-light: #dddddd;
+  --color-gray-lighter: #f5f5f5;
+  --color-white: #ffffff;
+
+  --text-heading-1: clamp(64px, 10vw, 180px);
+  --text-heading-2: clamp(36px, 6vw, 80px);
+  --text-heading-3: clamp(28px, 4vw, 60px);
+  --text-heading-4: clamp(24px, 3vw, 42px);
+  --text-heading-5: clamp(20px, 2.5vw, 36px);
+
+  --text-subtitle: clamp(18px, 2vw, 24px);
+  --text-body: clamp(16px, 1.2vw, 18px);
+  --text-caption: clamp(12px, 0.8vw, 14px);
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --text-heading-1: clamp(180px, 9.375vw, 320px);
+  }
+}
+
+/* ---------- 전역 레이아웃 ---------- */
+/* TODO: 반응형 디자인 확정 후 모바일 패딩 조정 및 브레이크포인트 대응 필요 */
+.layout {
+  padding-top: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 250px;
+  min-height: 100vh;
+}
