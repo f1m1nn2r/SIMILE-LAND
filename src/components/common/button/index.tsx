@@ -44,7 +44,7 @@ export const Button = ({
         className={`group flex items-center gap-0 overflow-hidden rounded-full px-10 py-4 transition-all duration-300 cursor-pointer ${colorClass[bgColor]} ${className ?? ""}`}
       >
         <span className="flex w-0 overflow-hidden transition-all duration-300 group-hover:mr-2 group-hover:w-6">
-          <Image src="/assets/smile.svg" alt="" width={20} height={20} />
+          <Image src="/assets/icons/smile.svg" alt="" width={20} height={20} />
         </span>
         <Typography size={textSize} weight={textWeight}>
           {children}
