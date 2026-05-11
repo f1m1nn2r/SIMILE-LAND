@@ -55,6 +55,8 @@
   --text-subtitle: clamp(18px, 2vw, 24px);
   --text-body: clamp(16px, 1.2vw, 18px);
   --text-caption: clamp(12px, 0.8vw, 14px);
+
+  --layout-padding-x: 100px;
 }
 
 @media (min-width: 1920px) {
@@ -66,9 +68,8 @@
 /* ---------- 전역 레이아웃 ---------- */
 /* TODO: 반응형 디자인 확정 후 모바일 패딩 조정 및 브레이크포인트 대응 필요 */
 .layout {
-  padding-top: 40px;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: var(--layout-padding-x);
+  padding-right: var(--layout-padding-x);
   padding-bottom: 250px;
   min-height: 100vh;
 }
