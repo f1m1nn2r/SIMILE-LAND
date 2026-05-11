@@ -19,6 +19,7 @@
 
 /* ---------- 타이포그래피 ---------- */
 @theme {
+  --text-display: clamp(100px, 15.625vw, 300px);
   --text-heading-1: clamp(64px, 10vw, 180px);
   --text-heading-2: clamp(36px, 6vw, 80px);
   --text-heading-3: clamp(28px, 4vw, 60px);
@@ -46,6 +47,7 @@
   --color-gray-lighter: #f5f5f5;
   --color-white: #ffffff;
 
+  --text-display: clamp(100px, 15.625vw, 300px);
   --text-heading-1: clamp(64px, 10vw, 180px);
   --text-heading-2: clamp(36px, 6vw, 80px);
   --text-heading-3: clamp(28px, 4vw, 60px);

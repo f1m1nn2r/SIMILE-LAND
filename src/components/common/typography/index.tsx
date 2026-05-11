@@ -8,6 +8,7 @@ const weightMap = {
 } as const;
 
 const sizeMap = {
+  display: "text-display",
   "heading-1": "text-heading-1",
   "heading-2": "text-heading-2",
   "heading-3": "text-heading-3",

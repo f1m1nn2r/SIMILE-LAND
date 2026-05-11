@@ -1,0 +1,46 @@
+@import "../../styles/variables";
+
+.discography-list {
+  &__hero {
+    position: relative;
+    max-width: 1750px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    display: flex;
+    flex-flow: column;
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    color: $color-ink;
+
+    &-line2 {
+      text-align: right;
+    }
+  }
+
+  &__deco1 {
+    position: absolute;
+    top: 0;
+    right: 133px;
+    z-index: -1;
+  }
+
+  &__deco2 {
+    position: absolute;
+    left: 250px;
+    bottom: 0;
+  }
+
+  &__happy {
+    margin-top: 40px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(16px, 1.5vw, 28px);
+    row-gap: clamp(40px, 4vw, 60px);
+    margin-top: 250px;
+  }
+}

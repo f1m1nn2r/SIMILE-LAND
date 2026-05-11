@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import Image from "next/image";
+import Link from "next/link";
 import style from "./discography.module.scss";
 import { useState, useRef, useEffect } from "react";
 import { Typography } from "@/src/components/common/typography";
@@ -10,9 +11,15 @@ import { extractEdgeColors } from "@/src/features/discography/utils/extractColor
 import { SectionTitle } from "@/src/components/common/section-title";
 import { discographyData } from "../constants";
 
-type CardProps = (typeof discographyData)[number];
+type CardProps = (typeof discographyData)[number] & { href: string };
 
-const DiscographyCard = ({ image, title, date, description }: CardProps) => {
+export const DiscographyCard = ({
+  image,
+  title,
+  date,
+  description,
+  href,
+}: CardProps) => {
   const [gradient, setGradient] = useState<string | null>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const TILT_MAX = 12;
@@ -63,7 +70,7 @@ const DiscographyCard = ({ image, title, date, description }: CardProps) => {
   };
 
   return (
-    <div className={style["discography__card"]}>
+    <Link href={href} className={style["discography__card"]}>
       <div
         className={style["discography__image"]}
         style={gradient ? { background: gradient } : undefined}
@@ -95,7 +102,7 @@ const DiscographyCard = ({ image, title, date, description }: CardProps) => {
           {description}
         </Typography>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -106,7 +113,7 @@ export const Discography = () => {
 
       <div className={style["discography__grid"]}>
         {discographyData.slice(0, 4).map((album, index) => (
-          <DiscographyCard key={index} {...album} />
+          <DiscographyCard key={index} {...album} href={`/discography/${album.id}`} />
         ))}
       </div>
 
