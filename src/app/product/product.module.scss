@@ -1,0 +1,22 @@
+.product {
+  &__banner {
+    position: relative;
+    margin-top: calc(-1 * var(--layout-padding-top));
+    margin-left: calc(-1 * var(--layout-padding-x));
+    margin-right: calc(-1 * var(--layout-padding-x));
+    height: clamp(280px, 30vw, 430px);
+  }
+
+  &__banner-img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: clamp(20px, 2.78vw, 40px);
+    row-gap: clamp(40px, 5vw, 80px);
+    margin-top: clamp(60px, 6vw, 100px);
+  }
+}

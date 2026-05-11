@@ -10,7 +10,7 @@ import { merchData } from "../constants";
 
 type CardProps = (typeof merchData)[number];
 
-const MerchCard = ({ frontImage, backImage, title, price }: CardProps) => {
+export const MerchCard = ({ frontImage, backImage, title, price }: CardProps) => {
   const [liked, setLiked] = useState(false);
   const [hovered, setHovered] = useState(false);
 
