@@ -1,0 +1,55 @@
+.profile {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &__cards {
+    position: relative;
+    height: 100%;
+    max-height: clamp(624px, 32.5vw, 1248px);
+    overflow: hidden;
+  }
+
+  &__card {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__image {
+    height: clamp(624px, 32.5vw, 1248px);
+    position: relative;
+    overflow: hidden;
+
+    img {
+      width: auto;
+      max-width: clamp(1000px, 52.0833vw, 2000px);
+      height: clamp(624px, 32.5vw, 1248px);
+    }
+  }
+
+  &__deco-1 {
+    position: absolute;
+    left: 35%;
+    right: 0;
+    top: 54%;
+    height: clamp(50px, 3.9vw, 75px);
+    background-color: var(--color-yellow);
+    z-index: 0;
+  }
+
+  &__deco-2 {
+    position: absolute;
+    left: 38%;
+    right: 0;
+    top: 65%;
+    height: clamp(30px, 2.35vw, 45px);
+    background-color: var(--color-teal);
+    z-index: 0;
+  }
+
+  &__info {
+    margin-top: 20px;
+    flex-shrink: 0;
+  }
+}

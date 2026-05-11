@@ -1,0 +1,55 @@
+@import "../../../styles/variables";
+
+.discography {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(16px, 1.5vw, 28px);
+    row-gap: clamp(40px, 4vw, 60px);
+    margin-bottom: clamp(40px, 5vw, 80px);
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__image {
+    aspect-ratio: 835 / 550;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  &__image-inner {
+    position: absolute;
+    inset: -5%;
+    will-change: transform;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-top: clamp(16px, 1.5vw, 24px);
+    text-align: center;
+  }
+
+  &__title {
+    color: $color-blue;
+  }
+
+  &__date,
+  &__desc {
+    color: $color-ink;
+  }
+
+  &__cta {
+    display: flex;
+    justify-content: center;
+  }
+}
