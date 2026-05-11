@@ -1,14 +1,11 @@
+@import "../../styles/variables";
+
 .product {
   &__banner {
     position: relative;
-    margin-left: calc(-1 * var(--layout-padding-x));
-    margin-right: calc(-1 * var(--layout-padding-x));
-    height: clamp(280px, 30vw, 430px);
-  }
-
-  &__banner-img {
-    object-fit: cover;
-    object-position: center;
+    margin-left: -$layout-padding-x;
+    margin-right: -$layout-padding-x;
+    height: clamp(350px, 48.6vw, 700px);
   }
 
   &__grid {
