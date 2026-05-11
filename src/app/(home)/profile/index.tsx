@@ -86,30 +86,11 @@ export const Profile = () => {
       </div>
       <div className={style["profile__info"]}>
         <Typography size="body" weight="medium">
-          {profileData[activeIndex].position.split("").map((char, i) => (
-            <span
-              key={i}
-              style={{
-                display: "inline-block",
-                whiteSpace: char === " " ? "pre" : undefined,
-              }}
-            >
-              {char}
-            </span>
-          ))}
+          <span>{profileData[activeIndex].position}</span>
         </Typography>
 
         <Typography size="heading-4" weight="bold">
-          {profileData[activeIndex].name.split("").map((char, i) => (
-            <span
-              key={i}
-              style={{
-                display: "inline-block",
-              }}
-            >
-              {char}
-            </span>
-          ))}
+          <span>{profileData[activeIndex].name}</span>
         </Typography>
       </div>
     </section>
