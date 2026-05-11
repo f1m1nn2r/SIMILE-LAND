@@ -7,7 +7,7 @@ import { Typography } from "@/src/components/common/typography";
 
 export default function DiscographyList() {
   return (
-    <div className="discography-list">
+    <div className={style["discography-list"]}>
       <div className={style["discography-list__hero"]}>
         <Typography
           size="display"
