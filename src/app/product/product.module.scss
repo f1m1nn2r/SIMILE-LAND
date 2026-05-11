@@ -1,7 +1,6 @@
 .product {
   &__banner {
     position: relative;
-    margin-top: calc(-1 * var(--layout-padding-top));
     margin-left: calc(-1 * var(--layout-padding-x));
     margin-right: calc(-1 * var(--layout-padding-x));
     height: clamp(280px, 30vw, 430px);
