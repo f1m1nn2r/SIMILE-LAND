@@ -1,5 +1,7 @@
 import { getSpotifyArtistAlbums } from "@/src/lib/spotify";
 
+export const revalidate = 3600;
+
 export async function GET() {
   const artistId = process.env.SPOTIFY_ARTIST_ID;
 

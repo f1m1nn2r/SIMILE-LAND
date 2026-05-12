@@ -9,9 +9,10 @@ export async function getSpotifyAlbum(albumId: string): Promise<SpotifyAlbum> {
     next: { revalidate: 3600 },
   });
 
-  const errorText = await res.text();
-
-  if (!res.ok)
+  if (!res.ok) {
+    const errorText = await res.text();
     throw new Error(`Spotify 앨범 조회 실패: ${res.status} - ${errorText}`);
+  }
+
   return res.json();
 }

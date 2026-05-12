@@ -1,6 +1,8 @@
 import { getSpotifyAlbum } from "@/src/lib/spotify";
 import type { NextRequest } from "next/server";
 
+export const revalidate = 3600;
+
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
