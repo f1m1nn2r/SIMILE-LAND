@@ -18,6 +18,11 @@ const NAV_ITEMS = [
 
 const ICON_SIZE = "clamp(22px, 1.1458vw, 44px)";
 
+const isActive = (pathname: string, href: string) =>
+  href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
+
 type NavMenuProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -132,12 +137,14 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
             <Link
               href={href}
               onClick={onClose}
-              className={`${style["nav-menu__link"]} ${pathname === href ? style["nav-menu__link--active"] : ""}`}
+              className={`${style["nav-menu__link"]} ${isActive(pathname, href) ? style["nav-menu__link--active"] : ""}`}
             >
               <Typography weight="bold" size="subtitle">
                 {label}
               </Typography>
-              {pathname === href && <span className={style["nav-menu__dot"]} />}
+              {isActive(pathname, href) && (
+                <span className={style["nav-menu__dot"]} />
+              )}
             </Link>
           </li>
         ))}
@@ -145,7 +152,7 @@ export const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
 
       <Link
         ref={instagramRef}
-        href="https://www.instagram.com"
+        href="https://www.instagram.com/simile_land/"
         target="_blank"
         rel="noopener noreferrer"
         className={style["nav-menu__instagram"]}

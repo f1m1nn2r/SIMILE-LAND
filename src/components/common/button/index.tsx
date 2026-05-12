@@ -3,7 +3,14 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { Typography, type Weight, type Size } from "../typography";
 
-type ButtonColor = "lavender" | "yellow" | "teal" | "blue" | "orange" | "pink";
+type ButtonColor =
+  | "lavender"
+  | "yellow"
+  | "teal"
+  | "blue"
+  | "orange"
+  | "pink"
+  | "graylighter";
 
 type BaseButtonProps = {
   bgColor: ButtonColor;
@@ -27,6 +34,7 @@ const colorClass: Record<ButtonColor, string> = {
   blue: "bg-blue",
   orange: "bg-orange",
   pink: "bg-pink",
+  graylighter: "bg-gray-lighter",
 };
 
 export const Button = ({
@@ -53,7 +61,11 @@ export const Button = ({
     );
 
     if (href) {
-      return <Link href={href} className={emojiClass}>{emojiContent}</Link>;
+      return (
+        <Link href={href} className={emojiClass}>
+          {emojiContent}
+        </Link>
+      );
     }
     return (
       <button type="button" onClick={onClick} className={emojiClass}>
@@ -70,7 +82,11 @@ export const Button = ({
   );
 
   if (href) {
-    return <Link href={href} className={defaultClass}>{defaultContent}</Link>;
+    return (
+      <Link href={href} className={defaultClass}>
+        {defaultContent}
+      </Link>
+    );
   }
   return (
     <button type="button" onClick={onClick} className={defaultClass}>
