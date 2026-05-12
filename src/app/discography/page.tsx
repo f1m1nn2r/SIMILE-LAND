@@ -44,8 +44,11 @@ export default function DiscographyList() {
         {discographyData.map((album) => (
           <DiscographyCard
             key={album.id}
-            {...album}
-            href={`/discography/${album.id}`}
+            albumId={album.albumId}
+            image={album.image}
+            title={album.title}
+            date={album.date}
+            description={album.description}
           />
         ))}
       </div>

@@ -1,35 +1,33 @@
 "use client";
 
-import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import style from "./discography.module.scss";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Typography } from "@/src/components/common/typography";
 import { Button } from "@/src/components/common/button";
 import { extractEdgeColors } from "@/src/features/discography/utils/extractColor";
 import { SectionTitle } from "@/src/components/common/section-title";
 import { discographyData } from "../constants";
-
-type CardProps = (typeof discographyData)[number] & { href: string };
+import { useAlbumCoverEffect } from "../hooks/use-album-cover-effect";
+import { useSpotifyArtistAlbums } from "../hooks/use-spotify-artist-albums";
+import { DiscographyCardProps } from "../types";
 
 export const DiscographyCard = ({
+  albumId,
   image,
   title,
   date,
   description,
-  href,
-}: CardProps) => {
+}: DiscographyCardProps) => {
   const [gradient, setGradient] = useState<string | null>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const TILT_MAX = 12;
+  const { imageRef, handleMouseMove, handleMouseLeave } = useAlbumCoverEffect();
+  const { data: spotifyArtistsAlbums } = useSpotifyArtistAlbums();
 
-  useEffect(() => {
-    const el = imageRef.current;
-    return () => {
-      gsap.killTweensOf(el);
-    };
-  }, []);
+  const artistsAlbum = spotifyArtistsAlbums?.find((s) => s.id === albumId);
+  const spotifyAlbumImage = artistsAlbum?.images[0]?.url ?? image;
+  const href = `/discography/${artistsAlbum?.id ?? albumId}`;
+  const trackNumber = artistsAlbum?.total_tracks;
 
   const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     try {
@@ -38,35 +36,6 @@ export const DiscographyCard = ({
     } catch {
       // 캔버스 추출 실패 시 gradient 미적용
     }
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const image = imageRef.current;
-    if (!image) return;
-    const { left, top, width, height } =
-      e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - left) / width - 0.5;
-    const y = (e.clientY - top) / height - 0.5;
-    gsap.to(image, {
-      rotateY: x * TILT_MAX * 1.2,
-      rotateX: -y * TILT_MAX * 1.2,
-      scale: 1.05,
-      duration: 0.7,
-      ease: "power2.out",
-      transformPerspective: 800,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    gsap.to(imageRef.current, {
-      x: 0,
-      y: 0,
-      rotateY: 0,
-      rotateX: 0,
-      scale: 1,
-      duration: 0.7,
-      ease: "power3.out",
-    });
   };
 
   return (
@@ -79,7 +48,7 @@ export const DiscographyCard = ({
       >
         <div ref={imageRef} className={style["discography__image-inner"]}>
           <Image
-            src={image}
+            src={spotifyAlbumImage}
             alt={`${title} 앨범 이미지`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -93,10 +62,10 @@ export const DiscographyCard = ({
           weight="bold"
           className={style["discography__title"]}
         >
-          {title}
+          {artistsAlbum?.name ?? title} {trackNumber}
         </Typography>
         <Typography size="body" className={style["discography__date"]}>
-          {date}
+          {artistsAlbum?.release_date ?? date}
         </Typography>
         <Typography size="body" className={style["discography__desc"]}>
           {description}
@@ -112,8 +81,15 @@ export const Discography = () => {
       <SectionTitle>DISCOGRAPHY</SectionTitle>
 
       <div className={style["discography__grid"]}>
-        {discographyData.slice(0, 4).map((album, index) => (
-          <DiscographyCard key={index} {...album} href={`/discography/${album.id}`} />
+        {discographyData.slice(0, 4).map((album) => (
+          <DiscographyCard
+            key={album.id}
+            albumId={album.albumId}
+            image={album.image}
+            title={album.title}
+            date={album.date}
+            description={album.description}
+          />
         ))}
       </div>
 
