@@ -1,0 +1,131 @@
+@import "../../../styles/variables";
+
+.discography-detail {
+  &__banner {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 40px;
+
+    &-inner {
+      position: absolute;
+      inset: -5%;
+      will-change: transform;
+
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    margin-top: 250px;
+    align-items: flex-start;
+  }
+
+  // ---------- 좌측 앨범 소개 섹션 ---------- //
+  &__credits {
+    &-section {
+      // width: 100%;
+      // max-width: 800px;
+      flex: 1;
+      text-align: center;
+    }
+
+    &-label {
+      color: $color-ink;
+      margin-bottom: clamp(16px, 1.5vw, 24px);
+    }
+
+    &-group {
+      margin-bottom: clamp(16px, 1.5vw, 24px);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-line {
+      color: $color-ink;
+      display: block;
+    }
+  }
+
+  &__description {
+    color: $color-ink;
+    margin-bottom: clamp(24px, 2.5vw, 40px);
+  }
+
+  // ---------- 우측 앨범 트랙 섹션 ---------- //
+  &__album {
+    &-section {
+      // width: 100%;
+      // max-width: calc(100% - 800px);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(32px, 3vw, 48px);
+    }
+
+    &-art {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      margin: 0 auto;
+      align-self: flex-end;
+    }
+  }
+
+  &__record {
+    position: absolute;
+    top: 50%;
+    left: -80px;
+    transform: translateY(-50%);
+    z-index: -1;
+  }
+
+  &__track {
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.2vw, 20px);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    &-title {
+      color: $color-ink;
+    }
+
+    &-listen {
+      box-shadow: 0 4px 11px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // ---------- 우측 하단 앨범 큰 타이틀 ---------- //
+  &__title-section {
+    margin-top: clamp(60px, 6vw, 100px);
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__big-title {
+    font-size: var(--text-heading-1);
+    font-weight: 900;
+    color: $color-blue;
+    line-height: 1;
+  }
+}
