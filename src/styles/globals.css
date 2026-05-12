@@ -74,4 +74,5 @@
   padding-right: var(--layout-padding-x);
   padding-bottom: 250px;
   min-height: 100vh;
+  position: relative;
 }
