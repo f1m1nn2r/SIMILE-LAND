@@ -127,7 +127,7 @@ export const discographyData: DiscographyItem[] = [
   },
   {
     id: "grief-reaction",
-    albumId: "21YodWnYRxKBgmJCzc-IHQ",
+    albumId: "3arzXNuxxChGk730gjEAUa",
     title: "애도 반응",
     date: "2023-10-27",
     image: "/assets/images/discography-grief-reaction.png",

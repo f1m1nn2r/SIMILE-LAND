@@ -24,9 +24,7 @@ export const DiscographyCard = ({
   const { imageRef, handleMouseMove, handleMouseLeave } = useAlbumCoverEffect();
   const { data: spotifyArtistsAlbums } = useSpotifyArtistAlbums();
 
-  const artistsAlbum = spotifyArtistsAlbums?.find(
-    (s) => s.name.toLowerCase() === title.toLowerCase(),
-  );
+  const artistsAlbum = spotifyArtistsAlbums?.find((s) => s.id === albumId);
   const spotifyAlbumImage = artistsAlbum?.images[0]?.url ?? image;
   const href = `/discography/${artistsAlbum?.id ?? albumId}`;
   const trackNumber = artistsAlbum?.total_tracks;

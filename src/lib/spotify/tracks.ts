@@ -9,9 +9,9 @@ export async function getSpotifyTrack(trackId: string): Promise<SpotifyTrack> {
     next: { revalidate: 3600 },
   });
 
-  const errorText = await res.text();
-
-  if (!res.ok)
+  if (!res.ok) {
+    const errorText = await res.text();
     throw new Error(`Spotify 트랙 조회 실패: ${res.status} - ${errorText}`);
+  }
   return res.json();
 }

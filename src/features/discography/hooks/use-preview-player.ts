@@ -9,7 +9,7 @@ export function usePreviewPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
-  const dataArrayRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
+  const dataArrayRef = useRef<Uint8Array | null>(null);
 
   const init = () => {
     if (audioRef.current) return;
@@ -21,7 +21,8 @@ export function usePreviewPlayer() {
 
     const AudioContextClass =
       window.AudioContext ||
-      (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext!;
+      (window as Window & { webkitAudioContext?: typeof AudioContext })
+        .webkitAudioContext!;
     audioCtxRef.current = new AudioContextClass();
 
     analyserRef.current = audioCtxRef.current.createAnalyser();
@@ -31,7 +32,9 @@ export function usePreviewPlayer() {
     source.connect(analyserRef.current);
     analyserRef.current.connect(audioCtxRef.current.destination);
 
-    dataArrayRef.current = new Uint8Array(analyserRef.current.frequencyBinCount);
+    dataArrayRef.current = new Uint8Array(
+      analyserRef.current.frequencyBinCount,
+    );
 
     audio.addEventListener("ended", () => {
       setIsPlaying(false);
