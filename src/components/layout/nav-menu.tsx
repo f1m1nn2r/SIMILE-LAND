@@ -19,7 +19,9 @@ const NAV_ITEMS = [
 const ICON_SIZE = "clamp(22px, 1.1458vw, 44px)";
 
 const isActive = (pathname: string, href: string) =>
-  href === "/" ? pathname === "/" : pathname.startsWith(href);
+  href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
 
 type NavMenuProps = {
   isOpen: boolean;
