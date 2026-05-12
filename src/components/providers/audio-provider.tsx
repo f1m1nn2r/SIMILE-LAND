@@ -13,7 +13,7 @@ interface AudioContextValue {
   isPlaying: boolean;
   musicToggle: () => Promise<void>;
   analyserRef: RefObject<AnalyserNode | null>;
-  dataArrayRef: RefObject<Uint8Array | null>;
+  dataArrayRef: RefObject<Uint8Array<ArrayBuffer> | null>;
 }
 
 const AudioCtx = createContext<AudioContextValue | null>(null);
@@ -23,7 +23,7 @@ export const AudioProvider = ({ children }: { children: React.ReactNode }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
-  const dataArrayRef = useRef<Uint8Array | null>(null);
+  const dataArrayRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
   const isPlayingRef = useRef(false);
 
   const musicToggle = async () => {
