@@ -16,8 +16,8 @@ export async function GET(
   try {
     const track = await getSpotifyTrack(id);
     return Response.json({
-      previewUrl: track.preview_url,
-      spotifyUrl: track.external_urls.spotify,
+      preview_url: track.preview_url,
+      external_urls: track.external_urls,
     });
   } catch (error) {
     console.error(error);

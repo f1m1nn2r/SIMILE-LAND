@@ -28,17 +28,11 @@ export type SpotifyAlbum = {
 export type SpotifyAlbumData = {
   id: string;
   name: string;
-  releaseDate: string;
+  release_date: string;
   images: { url: string; width: number; height: number }[];
-  spotifyUrl: string;
-  artists: string[];
-  tracks: {
-    id: string;
-    number: number;
-    name: string;
-    previewUrl: string | null;
-    spotifyUrl: string;
-  }[];
+  external_urls: { spotify: string };
+  artists: { id: string; name: string }[];
+  tracks: SpotifyAlbumTrack[];
 };
 
 export type SpotifyTrack = {

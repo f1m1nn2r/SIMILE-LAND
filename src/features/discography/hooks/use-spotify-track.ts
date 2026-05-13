@@ -3,8 +3,8 @@
 import { useQuery } from "@tanstack/react-query";
 
 type SpotifyTrackResult = {
-  previewUrl: string | null;
-  spotifyUrl: string;
+  preview_url: string | null;
+  external_urls: { spotify: string };
 };
 
 async function fetchSpotifyTrack(trackId: string): Promise<SpotifyTrackResult> {
