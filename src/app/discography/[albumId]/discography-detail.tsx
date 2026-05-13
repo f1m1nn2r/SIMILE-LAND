@@ -86,8 +86,8 @@ export const DiscographyDetail = ({
                 track={track}
                 isCurrentlyPlaying={
                   isPlaying &&
-                  !!track.previewUrl &&
-                  currentUrl === track.previewUrl
+                  !!track.preview_url &&
+                  currentUrl === track.preview_url
                 }
                 onPlay={play}
               />

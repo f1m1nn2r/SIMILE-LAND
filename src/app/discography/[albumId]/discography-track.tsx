@@ -10,10 +10,10 @@ export const DiscographyTrack = ({
   isCurrentlyPlaying,
   onPlay,
 }: DiscographyTrackItemProps) => {
-  const btnProps = track.previewUrl
-    ? { onClick: () => onPlay(track.previewUrl!) }
-    : track.spotifyUrl
-      ? { href: track.spotifyUrl }
+  const btnProps = track.preview_url
+    ? { onClick: () => onPlay(track.preview_url!) }
+    : track.external_urls?.spotify
+      ? { href: track.external_urls.spotify }
       : { onClick: () => alert("재생할 수 없어요!") };
 
   return (
@@ -23,7 +23,7 @@ export const DiscographyTrack = ({
         weight="medium"
         className={style["discography-detail__track-title"]}
       >
-        TRACK {track.number}. {track.name}
+        TRACK {track.track_number}. {track.name}
       </Typography>
       <Button
         variant="emoji"

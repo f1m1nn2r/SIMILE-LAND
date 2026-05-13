@@ -18,16 +18,16 @@ export async function GET(
     return Response.json({
       id: album.id,
       name: album.name,
-      releaseDate: album.release_date,
+      release_date: album.release_date,
       images: album.images,
-      spotifyUrl: album.external_urls.spotify,
-      artists: album.artists.map((a) => a.name),
+      external_urls: album.external_urls,
+      artists: album.artists,
       tracks: album.tracks.items.map((t) => ({
         id: t.id,
-        number: t.track_number,
+        track_number: t.track_number,
         name: t.name,
-        previewUrl: t.preview_url,
-        spotifyUrl: t.external_urls.spotify,
+        preview_url: t.preview_url,
+        external_urls: t.external_urls,
       })),
     });
   } catch (error) {
