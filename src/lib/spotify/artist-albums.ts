@@ -30,5 +30,6 @@ export async function getSpotifyArtistAlbums(
     );
   }
 
-  return res.json();
+  const data: { items: SpotifyArtistAlbum[] } = await res.json();
+  return data.items;
 }
