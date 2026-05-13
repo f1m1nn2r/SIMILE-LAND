@@ -8,6 +8,7 @@ export type DiscographyItem = {
   image: string;
   description: string;
   credits: string[][];
+  tracksNum?: number;
 };
 
 export type DiscographyCardProps = Omit<DiscographyItem, "credits" | "id">;

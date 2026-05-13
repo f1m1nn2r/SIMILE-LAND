@@ -104,6 +104,7 @@ export const discographyData: DiscographyItem[] = [
         "어쩌면 우울한 본인을 밝고 활기찬 모습으로 포장하는 걸지도.",
       ],
     ],
+    tracksNum: 5,
   },
   {
     id: "stars-and-you",
@@ -124,6 +125,7 @@ export const discographyData: DiscographyItem[] = [
         "사랑이란 무엇인지 바보라도 알겠습니다.",
       ],
     ],
+    tracksNum: 1,
   },
   {
     id: "grief-reaction",
@@ -148,6 +150,7 @@ export const discographyData: DiscographyItem[] = [
         "이 곡은 저의 아버지 故 '심재용' 님의 기일인 10월 27일에 발매되었습니다.",
       ],
     ],
+    tracksNum: 1,
   },
   {
     id: "quit-smoking",
@@ -166,6 +169,7 @@ export const discographyData: DiscographyItem[] = [
         "점점 짧아지는 담배에 미련이 남아 한모금만 더 피우고자 연신 숨을 들이키고 더이상 태울곳이 없어진 담배는 그렇게 재떨이에 파묻힌다.",
       ],
     ],
+    tracksNum: 1,
   },
   {
     id: "find-my-kid",
@@ -186,5 +190,6 @@ export const discographyData: DiscographyItem[] = [
         "아티스트 심아일은 그런 허탈한 마음을 오히려 신나는 멜로디와 편곡으로 어린 시절의 즐거움을 떠올릴 수 있도록 재해석하였다.",
       ],
     ],
+    tracksNum: 1,
   },
 ];

@@ -19,6 +19,7 @@ export const DiscographyCard = ({
   title,
   date,
   description,
+  tracksNum,
 }: DiscographyCardProps) => {
   const [gradient, setGradient] = useState<string | null>(null);
   const { imageRef, handleMouseMove, handleMouseLeave } = useAlbumCoverEffect();
@@ -62,13 +63,16 @@ export const DiscographyCard = ({
           weight="bold"
           className={style["discography__title"]}
         >
-          {artistsAlbum?.name ?? title} {trackNumber}
+          {artistsAlbum?.name ?? title}
         </Typography>
         <Typography size="body" className={style["discography__date"]}>
           {artistsAlbum?.release_date ?? date}
         </Typography>
         <Typography size="body" className={style["discography__desc"]}>
           {description}
+        </Typography>
+        <Typography size="caption">
+          Total tracks: {trackNumber ?? tracksNum}
         </Typography>
       </div>
     </Link>
@@ -88,6 +92,7 @@ export const Discography = () => {
             image={album.image}
             title={album.title}
             date={album.date}
+            tracksNum={album.tracksNum}
             description={album.description}
           />
         ))}

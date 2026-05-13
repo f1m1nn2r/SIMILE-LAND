@@ -8,9 +8,14 @@ import { Button } from "@/src/components/common/button";
 import { SectionTitle } from "@/src/components/common/section-title";
 import { merchData } from "../constants";
 
-type CardProps = (typeof merchData)[number];
+type MerchCardProps = (typeof merchData)[number];
 
-export const MerchCard = ({ frontImage, backImage, title, price }: CardProps) => {
+export const MerchCard = ({
+  frontImage,
+  backImage,
+  title,
+  price,
+}: MerchCardProps) => {
   const [liked, setLiked] = useState(false);
   const [hovered, setHovered] = useState(false);
 
