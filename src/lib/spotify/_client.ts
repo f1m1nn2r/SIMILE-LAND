@@ -18,9 +18,11 @@ export async function getAccessToken(): Promise<string> {
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
     if (!clientId || !clientSecret) {
-      throw new ApiError("Spotify 환경변수가 설정되지 않았습니다.", {
-        code: "MISSING_ENV",
-      });
+      throw new ApiError(
+        0,
+        "Spotify 환경변수가 설정되지 않았습니다.",
+        "MISSING_ENV",
+      );
     }
 
     const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
