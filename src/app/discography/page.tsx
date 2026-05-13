@@ -48,6 +48,7 @@ export default function DiscographyList() {
             image={album.image}
             title={album.title}
             date={album.date}
+            tracksNum={album.tracksNum}
             description={album.description}
           />
         ))}

@@ -1,13 +1,16 @@
-import { notFound } from "next/navigation";
 import { discographyData } from "@/src/features/discography/constants";
 import { getSpotifyAlbum } from "@/src/lib/spotify";
 import { DiscographyDetail } from "./discography-detail";
+import { Empty } from "@/src/components/common/empty";
+import { FetchError } from "@/src/components/common/fetch-error";
 
-type Props = {
+type DiscographyDetailPageProps = {
   params: Promise<{ albumId: string }>;
 };
 
-export default async function DiscographyDetailPage({ params }: Props) {
+export default async function DiscographyDetailPage({
+  params,
+}: DiscographyDetailPageProps) {
   const { albumId } = await params;
 
   let album = discographyData.find((item) => item.albumId === albumId);
@@ -19,11 +22,11 @@ export default async function DiscographyDetailPage({ params }: Props) {
         (item) => item.title.toLowerCase() === spotifyAlbum.name.toLowerCase(),
       );
     } catch {
-      // Spotify 조회 실패
+      return <FetchError>앨범을 불러오는데 실패했어요.</FetchError>;
     }
   }
 
-  if (!album) notFound();
+  if (!album) return <Empty>앨범 정보가 없어요.</Empty>;
 
   return <DiscographyDetail album={album} spotifyAlbumId={albumId} />;
 }
