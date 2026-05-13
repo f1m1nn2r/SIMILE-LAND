@@ -1,17 +1,28 @@
 import { SpotifyTrack } from "@/src/types/spotify";
 import { getAccessToken } from "./_client";
+import { ApiError } from "../errors/api-error";
 
 export async function getSpotifyTrack(trackId: string): Promise<SpotifyTrack> {
   const token = await getAccessToken();
 
-  const res = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
-    headers: { Authorization: `Bearer ${token}` },
-    next: { revalidate: 3600 },
-  });
+  let res: Response;
+
+  try {
+    res = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      next: { revalidate: 3600 },
+    });
+  } catch {
+    throw new ApiError(
+      0,
+      "Spotify 요청 중 네트워크 오류가 발생했습니다.",
+      "NETWORK_ERROR",
+    );
+  }
 
   if (!res.ok) {
     const errorText = await res.text();
-    throw new Error(`Spotify 트랙 조회 실패: ${res.status} - ${errorText}`);
+    throw new ApiError(res.status, `Spotify 트랙 조회 실패: ${errorText}`);
   }
   return res.json();
 }
