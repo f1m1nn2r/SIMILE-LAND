@@ -55,8 +55,21 @@
     color: $color-ink;
   }
 
+  &__original-price {
+    margin-top: 4px;
+  }
+
+  &__original-price-text {
+    text-decoration: line-through;
+    color: $color-gray;
+  }
+
   &__price {
-    margin-top: 5px;
+    margin-top: 4px;
+  }
+
+  &__discount-rate {
+    color: $color-red;
   }
 
   &__cta {
