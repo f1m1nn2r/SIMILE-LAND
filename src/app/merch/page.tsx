@@ -16,8 +16,8 @@ export default function ProductList() {
         />
       </div>
       <div className={style["product__grid"]}>
-        {merchData.map((item, index) => (
-          <MerchCard key={index} {...item} />
+        {merchData.map((item) => (
+          <MerchCard key={item.id} {...item} href={`/merch/${item.id}`} />
         ))}
       </div>
     </div>

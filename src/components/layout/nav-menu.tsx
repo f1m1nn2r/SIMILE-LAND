@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { label: "PROFILE", href: "/profile" },
   { label: "DISCOGRAPHY", href: "/discography" },
   { label: "SCHEDULE", href: "/schedule" },
-  { label: "MERCH", href: "/product" },
+  { label: "MERCH", href: "/merch" },
 ];
 
 const ICON_SIZE = "clamp(22px, 1.1458vw, 44px)";

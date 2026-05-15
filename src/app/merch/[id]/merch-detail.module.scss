@@ -1,0 +1,209 @@
+@import "../../../styles/variables";
+
+.merch-detail {
+  padding-bottom: clamp(60px, 8vw, 120px);
+  padding-left: 50px;
+  padding-right: 50px;
+
+  &__main {
+    display: grid;
+    grid-template-columns: 713px 1fr;
+    gap: clamp(40px, 5.56vw, 50px);
+    align-items: start;
+    margin-bottom: clamp(80px, 11vw, 160px);
+  }
+
+  // ── Gallery ──────────────────────────────────────
+  &__gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__slider-wrap {
+    position: relative;
+  }
+
+  &__swiper {
+    width: 713px;
+    height: 713px;
+    background-color: $color-white;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  &__slide {
+    width: 713px;
+    height: 713px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-white;
+  }
+
+  &__slide-img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: $color-gray-lighter;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+
+    &--prev {
+      left: 20px;
+    }
+
+    &--next {
+      right: 20px;
+    }
+  }
+
+  // ── Thumbs ───────────────────────────────────────
+  &__thumbs {
+    width: 713px;
+  }
+
+  &__thumb-slide {
+    width: 200px !important;
+    cursor: pointer;
+  }
+
+  &__thumb {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: $color-white;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease;
+
+    :global(.swiper-slide-thumb-active) & {
+      border-color: $color-ink;
+    }
+  }
+
+  &__thumb-img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+
+  // ── Product Info ──────────────────────────────────
+  &__info {
+    padding-top: 8px;
+  }
+
+  &__title {
+    color: $color-ink;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  &__price-wrap {
+    margin-bottom: 20px;
+  }
+
+  &__original-price {
+    text-decoration: line-through;
+    color: $color-gray;
+    margin-bottom: 4px;
+  }
+
+  &__price {
+    color: $color-ink;
+  }
+
+  &__discount-rate {
+    color: $color-red;
+  }
+
+  &__description {
+    color: $color-gray-dark;
+    white-space: pre-line;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  &__divider {
+    border: none;
+    border-top: 1px solid $color-gray-light;
+    margin-bottom: 24px;
+  }
+
+  // ── Quantity ──────────────────────────────────────
+  &__quantity {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__quantity-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid $color-gray-light;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  &__quantity-input {
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    background-color: $color-white;
+    border: 1px solid $color-gray-light;
+    font-size: inherit;
+    color: $color-ink;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+    }
+  }
+
+  // ── Actions ───────────────────────────────────────
+  &__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  &__btn-cart,
+  &__btn-buy {
+    text-align: center;
+    justify-content: center;
+  }
+
+  &__btn-cart {
+    border: 1px solid $color-gray;
+  }
+
+  // ── Related ───────────────────────────────────────
+  &__related {
+    margin-top: clamp(40px, 5.56vw, 80px);
+  }
+
+  &__related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: clamp(20px, 2.78vw, 40px);
+    row-gap: clamp(40px, 5vw, 80px);
+  }
+}
