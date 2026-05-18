@@ -1,0 +1,272 @@
+@import "../../styles/variables";
+
+.order {
+  padding-bottom: clamp(60px, 8vw, 120px);
+
+  &__title {
+    margin-bottom: clamp(32px, 4vw, 60px);
+    color: $color-ink;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 450px;
+    gap: 60px;
+    align-items: start;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__section {
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  &__section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  &__section-title {
+    color: $color-ink;
+    margin-bottom: 20px;
+  }
+
+  &__section-header &__section-title {
+    margin-bottom: 0;
+  }
+
+  &__divider {
+    border: none;
+    border-top: 1px solid $color-gray-light;
+  }
+
+  // ── Product ─────────────────────────────────────
+  &__product {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+  }
+
+  &__product-img-wrap {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    background-color: $color-white;
+    overflow: hidden;
+  }
+
+  &__product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &__product-price-wrap {
+    margin-top: 10px;
+  }
+
+  &__product-original-price {
+    text-decoration: line-through;
+    color: $color-gray;
+  }
+
+  &__product-price {
+    color: $color-ink;
+  }
+
+  &__product-discount {
+    color: $color-red;
+  }
+
+  // ── Info Table ───────────────────────────────────
+  &__info-table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  &__info-label {
+    flex-shrink: 0;
+    width: 100px;
+    color: $color-gray;
+  }
+
+  &__info-value {
+    color: $color-ink;
+  }
+
+  // ── Address Badge ─────────────────────────────────
+  &__address-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 5px;
+    background-color: $color-yellow;
+    border-radius: 5px;
+    cursor: pointer;
+    color: $color-ink;
+  }
+
+  // ── Payment Methods ───────────────────────────────
+  &__payment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  &__payment-btn {
+    padding: 16px 12px;
+    border: 1px solid $color-gray-light;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: $color-white;
+    text-align: center;
+    transition:
+      border-color 0.2s,
+      background-color 0.2s;
+
+    &:hover {
+      border-color: $color-gray;
+    }
+
+    &--active {
+      border-color: $color-ink;
+    }
+  }
+
+  // ── Totals ───────────────────────────────────────
+  &__right {
+    position: sticky;
+    top: 200px;
+  }
+
+  &__totals {
+    border: 1px solid $color-gray-light;
+    border-radius: 12px;
+    padding: 32px;
+  }
+
+  &__totals-title {
+    color: $color-ink;
+    margin-bottom: 24px;
+  }
+
+  &__totals-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  &__totals-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--final {
+      padding-top: 16px;
+      border-top: 1px solid $color-gray-light;
+      margin-top: 4px;
+    }
+  }
+
+  &__totals-label {
+    color: $color-ink;
+  }
+
+  &__totals-note {
+    color: $color-gray;
+    margin-bottom: 28px;
+    word-break: keep-all;
+  }
+
+  // ── Actions ───────────────────────────────────────
+  &__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  &__btn-prev,
+  &__btn-pay {
+    padding: 15px;
+  }
+  &__btn-prev {
+    border: 1px solid $color-gray-light;
+  }
+}
+
+// ── Modal ──────────────────────────────────────────
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background-color: $color-white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  min-height: 600px;
+  padding: 40px;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+
+  &__header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  &__title {
+    color: $color-ink;
+  }
+
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  &__add-btn {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid $color-gray-light;
+    background-color: $color-white;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex: 1;
+  }
+
+  &__empty-icon {
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  &__empty-text {
+    color: $color-ink;
+  }
+}

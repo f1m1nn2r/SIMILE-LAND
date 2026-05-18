@@ -103,8 +103,8 @@ export const Merch = () => {
     <section className={style.merch}>
       <SectionTitle>MERCH</SectionTitle>
       <div className={style["merch__grid"]}>
-        {merchData.map((item, index) => (
-          <MerchCard key={index} {...item} />
+        {merchData.map((item) => (
+          <MerchCard key={item.id} {...item} href={`/merch/${item.id}`} />
         ))}
       </div>
       <div className={style["merch__cta"]}>
