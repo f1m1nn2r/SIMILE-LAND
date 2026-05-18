@@ -48,32 +48,33 @@ export const MerchCard = ({
           className={`${style["merch__img"]} ${isFlipped ? "" : style["merch__img--hidden"]}`}
         />
       )}
-      {/* TODO 좋아요 기능 작업 */}
-      <button
-        type="button"
-        className={style["merch__like"]}
-        onClick={(e) => {
-          e.preventDefault();
-          setLiked((prev) => !prev);
-        }}
-        aria-label={liked ? "좋아요 취소" : "좋아요"}
-      >
-        <Image
-          src={
-            liked ? "/assets/icons/happy.svg" : "/assets/icons/happy-black.svg"
-          }
-          alt=""
-          width={28}
-          height={28}
-          className={liked ? undefined : style["merch__like-icon--inactive"]}
-        />
-      </button>
     </div>
   );
 
   return (
     <div className={style["merch__card"]}>
-      {href ? <Link href={href}>{imageArea}</Link> : imageArea}
+      <div className={style["merch__image-wrap"]}>
+        {href ? <Link href={href}>{imageArea}</Link> : imageArea}
+        {/* TODO 좋아요 기능 작업 */}
+        <button
+          type="button"
+          className={style["merch__like"]}
+          onClick={() => setLiked((prev) => !prev)}
+          aria-label={liked ? "좋아요 취소" : "좋아요"}
+        >
+          <Image
+            src={
+              liked
+                ? "/assets/icons/happy.svg"
+                : "/assets/icons/happy-black.svg"
+            }
+            alt=""
+            width={28}
+            height={28}
+            className={liked ? undefined : style["merch__like-icon--inactive"]}
+          />
+        </button>
+      </div>
       <div className={style["merch__info"]}>
         <Typography size="body" className={style["merch__title"]}>
           {title}
@@ -103,8 +104,8 @@ export const Merch = () => {
     <section className={style.merch}>
       <SectionTitle>MERCH</SectionTitle>
       <div className={style["merch__grid"]}>
-        {merchData.map((item, index) => (
-          <MerchCard key={index} {...item} />
+        {merchData.map((item) => (
+          <MerchCard key={item.id} {...item} href={`/merch/${item.id}`} />
         ))}
       </div>
       <div className={style["merch__cta"]}>

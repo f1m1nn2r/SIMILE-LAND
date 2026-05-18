@@ -215,6 +215,7 @@ export default function MerchDetail({
               textSize="body"
               textWeight="semibold"
               className={style["merch-detail__btn-buy"]}
+              href={`/order?productId=${merch.id}`}
             >
               구매하기
             </Button>
