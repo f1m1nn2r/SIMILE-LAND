@@ -349,6 +349,7 @@ export default function Order({
                 textSize="body"
                 textWeight="semibold"
                 className={style["order__btn-prev"]}
+                href={`/merch/${product.id}`}
               >
                 이전
               </Button>

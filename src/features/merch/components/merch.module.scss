@@ -14,6 +14,10 @@
     flex-direction: column;
   }
 
+  &__image-wrap {
+    position: relative;
+  }
+
   &__image {
     aspect-ratio: 1 / 1;
     position: relative;

@@ -116,6 +116,11 @@
     border-radius: 5px;
     cursor: pointer;
     color: $color-ink;
+
+    &:focus-visible {
+      outline: 2px solid $color-ink;
+      outline-offset: 2px;
+    }
   }
 
   // ── Payment Methods ───────────────────────────────
@@ -142,6 +147,11 @@
 
     &--active {
       border-color: $color-ink;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-ink;
+      outline-offset: 2px;
     }
   }
 
@@ -204,6 +214,7 @@
   }
   &__btn-prev {
     border: 1px solid $color-gray-light;
+    text-align: center;
   }
 }
 
